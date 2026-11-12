@@ -260,7 +260,7 @@ export default {
 
 .modal-container {
   background: white;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 90%;
   max-width: 700px;
@@ -277,7 +277,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: var(--space-6) var(--space-8);
   border-bottom: 2px solid #e2e8f0;
 }
 
@@ -293,11 +293,11 @@ export default {
   border: none;
   color: #64748b;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: var(--space-2);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
 }
 
@@ -307,25 +307,25 @@ export default {
 }
 
 .modal-body {
-  padding: 2rem;
+  padding: var(--space-8);
   overflow-y: auto;
   flex: 1;
 }
 
 .modal-footer {
-  padding: 1.5rem 2rem;
+  padding: var(--space-6) var(--space-8);
   border-top: 2px solid #e2e8f0;
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .btn-secondary {
-  padding: 0.75rem 1.5rem;
+  padding: var(--space-3) var(--space-6);
   background: #f1f5f9;
   color: #475569;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -338,15 +338,15 @@ export default {
 /* Task Form */
 .task-form {
   background: #f8fafc;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
 .form-row {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
 }
 
 .form-row:last-child {
@@ -356,7 +356,7 @@ export default {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
   flex: 1;
 }
 
@@ -377,9 +377,9 @@ label {
 
 .task-input,
 .task-select {
-  padding: 0.75rem;
+  padding: var(--space-3);
   border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 0.95rem;
   transition: border-color 0.2s ease;
   font-family: inherit;
@@ -388,7 +388,7 @@ label {
 .task-input:focus,
 .task-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--color-accent);
 }
 
 .task-select {
@@ -397,11 +397,11 @@ label {
 }
 
 .task-add-btn {
-  padding: 0.75rem 1.75rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: var(--space-3) 1.75rem;
+  background: var(--color-accent);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -421,7 +421,7 @@ label {
 .tasks-divider {
   height: 1px;
   background: #e2e8f0;
-  margin: 2rem 0;
+  margin: var(--space-8) 0;
 }
 
 .no-tasks {
@@ -435,14 +435,14 @@ label {
 .tasks-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .task-item {
   background: white;
   border: 2px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
   transition: all 0.2s ease;
 }
 
@@ -471,14 +471,14 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.75rem;
-  gap: 1rem;
+  margin-bottom: var(--space-3);
+  gap: var(--space-4);
 }
 
 .task-check-title {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
   flex: 1;
 }
 
@@ -486,7 +486,7 @@ label {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -511,7 +511,7 @@ label {
   background: #ef4444;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
@@ -531,14 +531,14 @@ label {
 .task-footer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .priority-badge {
   font-size: 0.688rem;
   font-weight: 600;
   text-transform: uppercase;
-  padding: 0.25rem 0.625rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: 4px;
   letter-spacing: 0.025em;
 }
@@ -561,7 +561,7 @@ label {
 .task-due-date {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   font-size: 0.813rem;
   color: #64748b;
 }
@@ -573,7 +573,7 @@ label {
 .status-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.25rem 0.625rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: 4px;
   margin-left: auto;
 }

@@ -1,15 +1,20 @@
 <template>
-  <div class="profile-menu">
+  <div class="profile-menu" :class="{ compact }">
     <button
       class="profile-button"
+      :title="compact ? currentUser.name : null"
+      :aria-label="currentUser.name"
+      aria-haspopup="menu"
+      :aria-expanded="isDropdownOpen"
       @click="toggleDropdown"
       @blur="handleBlur"
     >
       <div class="avatar">
         {{ getInitials(currentUser.name) }}
       </div>
-      <span class="profile-name">{{ currentUser.name }}</span>
+      <span v-if="!compact" class="profile-name">{{ currentUser.name }}</span>
       <svg
+        v-if="!compact"
         class="chevron"
         :class="{ 'chevron-open': isDropdownOpen }"
         width="16"
@@ -81,6 +86,11 @@ import { useI18n } from '../composables/useI18n'
 const { currentUser, logout, getInitials } = useAuth()
 const { t } = useI18n()
 
+// compact: avatar-only mode used when the sidebar is collapsed to its rail
+defineProps({
+  compact: { type: Boolean, default: false }
+})
+
 const isDropdownOpen = ref(false)
 const emit = defineEmits(['show-profile-details', 'show-tasks'])
 
@@ -116,26 +126,44 @@ const handleLogout = () => {
 </script>
 
 <style scoped>
+/* Colors come from tokens so the widget follows the sidebar's dark theme */
 .profile-menu {
   position: relative;
+  width: 100%;
+}
+
+.profile-menu.compact {
+  width: 40px;
 }
 
 .profile-button {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background var(--transition), border-color var(--transition);
   font-family: inherit;
 }
 
+.compact .profile-button {
+  justify-content: center;
+  padding: var(--space-1);
+}
+
 .profile-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--color-hover);
+  border-color: var(--color-border-strong);
+}
+
+.profile-button:focus-visible,
+.dropdown-item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .avatar {
@@ -147,45 +175,60 @@ const handleLogout = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.025em;
 }
 
 .profile-name {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
 .chevron {
-  color: #64748b;
-  transition: transform 0.2s ease;
+  color: var(--color-text-muted);
+  transition: transform var(--transition);
+  flex-shrink: 0;
 }
 
 .chevron-open {
   transform: rotate(180deg);
 }
 
+/* The menu opens upward because the profile button lives at the bottom of the sidebar */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  bottom: calc(100% + var(--space-2));
+  left: 0;
   right: 0;
-  min-width: 280px;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   z-index: 1000;
   overflow: hidden;
 }
 
+/* In the narrow rail the menu opens up and to the right, with room for the email */
+.compact .dropdown-menu {
+  right: auto;
+  min-width: 240px;
+}
+
 .dropdown-header {
-  padding: 1rem;
+  padding: var(--space-4);
   display: flex;
-  gap: 0.875rem;
+  gap: var(--space-3);
   align-items: center;
-  background: #f8fafc;
+  background: var(--color-bg);
 }
 
 .avatar-large {
@@ -210,14 +253,17 @@ const handleLogout = () => {
 
 .user-name {
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-text);
   font-size: 0.938rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .user-email {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--color-text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -225,56 +271,53 @@ const handleLogout = () => {
 
 .dropdown-divider {
   height: 1px;
-  background: #e2e8f0;
-  margin: 0.5rem 0;
+  background: var(--color-border);
+  margin: var(--space-2) 0;
 }
 
 .dropdown-item {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--transition);
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #334155;
+  color: var(--color-text);
 }
 
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--color-hover);
 }
 
 .dropdown-item svg {
-  color: #64748b;
+  color: var(--color-text-muted);
   flex-shrink: 0;
 }
 
-.dropdown-item.logout {
-  color: #dc2626;
-}
-
+.dropdown-item.logout,
 .dropdown-item.logout svg {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .dropdown-item.logout:hover {
-  background: #fef2f2;
+  background: var(--color-danger-soft);
 }
 
 .task-badge {
   margin-left: auto;
-  background: #2563eb;
+  background: var(--color-accent);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.125rem 0.5rem;
-  border-radius: 12px;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-lg);
   min-width: 20px;
   text-align: center;
 }

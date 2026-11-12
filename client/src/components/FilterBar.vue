@@ -102,34 +102,35 @@ export default {
 
 <style scoped>
 .filters-bar {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 0.75rem 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-3) 0;
   position: sticky;
-  top: 70px;
+  /* the old top header is gone, so the bar now sticks to the viewport top */
+  top: 0;
   z-index: 90;
 }
 
 .filters-container {
-  max-width: 1600px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--space-8);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .filters-grid {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
   flex: 1;
 }
 
 .filter-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .filter-group label {
@@ -140,9 +141,9 @@ export default {
 }
 
 .filter-select {
-  padding: 0.4rem 0.75rem;
+  padding: var(--space-2) var(--space-3);
   border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.813rem;
   color: #0f172a;
   background: white;
@@ -166,10 +167,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem;
+  padding: var(--space-2);
   background: white;
   border: 1px solid #e2e8f0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: #64748b;
   cursor: pointer;
   transition: all 0.2s;
@@ -190,5 +191,12 @@ export default {
 .reset-filters-btn svg {
   width: 18px;
   height: 18px;
+}
+
+@media (max-width: 767px) {
+  /* stick below the fixed 56px mobile bar; let the filters wrap instead of scrolling sideways */
+  .filters-bar { top: 56px; }
+  .filters-container { padding: 0 var(--space-4); }
+  .filters-grid { flex-wrap: wrap; }
 }
 </style>

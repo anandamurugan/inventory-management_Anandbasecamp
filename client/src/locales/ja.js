@@ -6,8 +6,15 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充',
     companyName: '触媒コンポーネンツ',
-    subtitle: '在庫管理システム'
+    subtitle: '在庫管理システム',
+    reports: 'レポート',
+    sidebarLabel: 'メインナビゲーション',
+    openSidebar: 'ナビゲーションを開く',
+    collapseSidebar: 'サイドバーを折りたたむ',
+    expandSidebar: 'サイドバーを展開',
+    language: '言語'
   },
 
   // Dashboard
@@ -185,6 +192,48 @@ export default {
       change: '変化',
       trend: 'トレンド',
       period: '期間'
+    }
+  },
+
+  // Restocking
+  restocking: {
+    title: '補充',
+    description: '予算に基づく補充の推奨を確認し、サプライヤーへ発注します',
+    budget: '予算',
+    budgetSlider: '補充予算',
+    recommendations: '推奨購入品目',
+    totalCost: '総コスト',
+    remaining: '残額',
+    loadError: '推奨の読み込みに失敗しました: {message}',
+    empty: 'この予算で推奨できる品目はありません。予算を増やしてください。',
+    placeOrder: '発注する',
+    submitting: '送信中...',
+    orderError: '発注に失敗しました: {message}',
+    orderSuccess: '発注が完了しました',
+    orderId: '注文ID',
+    expectedDelivery: '納品予定日',
+    partial: '一部',
+    table: {
+      item: '品目',
+      supplier: 'サプライヤー',
+      trend: 'トレンド',
+      demandGap: '需要ギャップ',
+      quantity: '数量',
+      unitCost: '単価',
+      lineTotal: '小計',
+      leadTime: 'リードタイム（日）'
+    },
+    submitted: {
+      title: '送信済み注文',
+      empty: '送信済みの補充注文はまだありません。',
+      loadError: '送信済み注文の読み込みに失敗しました: {message}',
+      orderId: '注文ID',
+      submittedAt: '送信日',
+      items: '品目',
+      totalCost: '総コスト',
+      leadTime: 'リードタイム（日）',
+      expectedDelivery: '納品予定日',
+      status: 'ステータス'
     }
   },
 
