@@ -6,8 +6,15 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
-    subtitle: 'Inventory Management System'
+    subtitle: 'Inventory Management System',
+    reports: 'Reports',
+    sidebarLabel: 'Primary navigation',
+    openSidebar: 'Open navigation',
+    collapseSidebar: 'Collapse sidebar',
+    expandSidebar: 'Expand sidebar',
+    language: 'Language'
   },
 
   // Dashboard
@@ -185,6 +192,48 @@ export default {
       change: 'Change',
       trend: 'Trend',
       period: 'Period'
+    }
+  },
+
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Get budget-based restocking recommendations and place supplier orders',
+    budget: 'Budget',
+    budgetSlider: 'Restocking budget',
+    recommendations: 'Recommended Purchases',
+    totalCost: 'Total Cost',
+    remaining: 'Remaining',
+    loadError: 'Failed to load recommendations: {message}',
+    empty: 'No recommendations fit this budget. Increase the budget to see suggested purchases.',
+    placeOrder: 'Place Order',
+    submitting: 'Submitting...',
+    orderError: 'Failed to place order: {message}',
+    orderSuccess: 'Order placed successfully',
+    orderId: 'Order ID',
+    expectedDelivery: 'Expected delivery',
+    partial: 'Partial',
+    table: {
+      item: 'Item',
+      supplier: 'Supplier',
+      trend: 'Trend',
+      demandGap: 'Demand Gap',
+      quantity: 'Quantity',
+      unitCost: 'Unit Cost',
+      lineTotal: 'Line Total',
+      leadTime: 'Lead Time (days)'
+    },
+    submitted: {
+      title: 'Submitted Orders',
+      empty: 'No restocking orders have been submitted yet.',
+      loadError: 'Failed to load submitted orders: {message}',
+      orderId: 'Order ID',
+      submittedAt: 'Submitted',
+      items: 'Items',
+      totalCost: 'Total Cost',
+      leadTime: 'Lead Time (days)',
+      expectedDelivery: 'Expected Delivery',
+      status: 'Status'
     }
   },
 
